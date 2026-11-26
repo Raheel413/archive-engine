@@ -67,13 +67,8 @@
       "shots": [
         {
           "kind": "photo",
-          "q": "Burt Reynolds 1959 portrait",
-          "star": false,
-          "src": "assets/b01-0.jpg",
-          "credit": "Oregon Live",
-          "source": "https://www.oregonlive.com/movies/2015/05/burt_reynolds_appearance_shock.html",
-          "w": 1200,
-          "h": 1049
+          "q": "young Burt Reynolds 1958 portrait",
+          "star": false
         }
       ],
       "lower": {
@@ -421,17 +416,6 @@
       ]
     },
     {
-      "seg": "soundbite",
-      "who": "Clint Eastwood",
-      "shots": [
-        {
-          "kind": "soundbite",
-          "find": "I was doing Rawhide, and I was coming to a hiatus",
-          "q": "Clint Eastwood interview Sergio Leone Rawhide hiatus"
-        }
-      ]
-    },
-    {
       "seg": "line",
       "text": "He took it anyway.",
       "shots": [
@@ -596,15 +580,7 @@
         {
           "kind": "clip",
           "q": "Burt Reynolds interview 1970s",
-          "star": false,
-          "src": "assets/b16-0.mp4",
-          "credit": "INA / Dailymotion",
-          "source": "https://www.dailymotion.com/video/xfd6sz",
-          "src_t": 51.3,
-          "w": 1440,
-          "h": 1080,
-          "dur": 4.97,
-          "unchecked": true
+          "star": false
         }
       ],
       "vo": "vo/b16.flac",
@@ -663,6 +639,21 @@
     "https://www.dailymotion.com/video/x35zfvr",
     "https://www.dailymotion.com/video/xmffwk",
     "https://www.facebook.com/61584801449111/videos/1956-a-young-clint-eastwood-makes-an-appearance-on-highway-patrol-just-another-f/1436855224761913/",
-    "https://www.facebook.com/61584824076298/videos/almer%C3%ADa-in-andalusia-l-tabernas-desert-a-place-where-rugged-hills-endless-horizo/1412842423671978/"
+    "https://www.facebook.com/61584824076298/videos/almer%C3%ADa-in-andalusia-l-tabernas-desert-a-place-where-rugged-hills-endless-horizo/1412842423671978/",
+    "https://www.oregonlive.com/movies/2015/05/burt_reynolds_appearance_shock.html",
+    "https://www.dailymotion.com/video/xfd6sz"
+  ],
+  "parked": [
+    {
+      "seg": "soundbite",
+      "who": "Clint Eastwood",
+      "shots": [
+        {
+          "kind": "soundbite",
+          "find": "I was doing Rawhide, and I was coming to a hiatus",
+          "q": "Clint Eastwood interview Sergio Leone Rawhide hiatus"
+        }
+      ]
+    }
   ]
 }
