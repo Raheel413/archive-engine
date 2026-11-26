@@ -19,15 +19,8 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Universal Studios backlot 1950s",
-          "star": false,
-          "src": "assets/b00-0.mp4",
-          "credit": "Megalextoria / Dailymotion",
-          "source": "https://www.dailymotion.com/video/x8340gd",
-          "src_t": 188.8,
-          "w": 1440,
-          "h": 1080,
-          "dur": 4.97
+          "q": "Universal Studios 1950s newsreel",
+          "star": false
         },
         {
           "kind": "photo",
@@ -68,12 +61,7 @@
         {
           "kind": "photo",
           "q": "Burt Reynolds 1959 portrait",
-          "star": false,
-          "src": "assets/b01-0.jpg",
-          "credit": "SuperStock",
-          "source": "https://www.superstock.com/asset/burt-reynolds-riverboat-directed-william-witney-richard-bartlett-hollingsworth-morse/4409-18028317?srsltid=AYCX9vLQeHQYXv6txi7COGgSsNdm9ZyoDx_j4w-G42hUjuubcWgGEgq5",
-          "w": 1024,
-          "h": 1024
+          "star": false
         }
       ],
       "lower": {
@@ -104,15 +92,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "young Clint Eastwood 1950s screen test",
-          "src": "assets/b02-0.mp4",
-          "credit": "NY Daily News / Dailymotion",
-          "source": "https://www.dailymotion.com/video/x2dadte",
-          "src_t": 55.8,
-          "w": 1920,
-          "h": 1080,
-          "dur": 2.23,
-          "face": 0.71
+          "q": "young Clint Eastwood 1956 film scene"
         }
       ],
       "vo": "vo/b02.flac",
@@ -194,15 +174,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Clint Eastwood 1960s interview",
-          "src": "assets/b05-0.mp4",
-          "credit": "PremiereFR / Dailymotion",
-          "source": "https://www.dailymotion.com/video/x4mxbqz",
-          "src_t": 92.3,
-          "w": 1440,
-          "h": 1080,
-          "dur": 5,
-          "face": 0.67
+          "q": "Clint Eastwood 1960s TV interview black and white"
         }
       ],
       "vo": "vo/b05.flac",
@@ -238,18 +210,8 @@
         },
         {
           "kind": "photo",
-          "q": "Clint Eastwood Rawhide publicity photo",
-          "at": 9,
-          "src": "assets/b07-1.jpg",
-          "credit": "The Good, the Bad and the Ugly (1966) / TMDB",
-          "source": "https://www.themoviedb.org/person/190",
-          "w": 1000,
-          "h": 1500,
-          "focus": {
-            "x": 0.431,
-            "y": 0.123
-          },
-          "face": 0.54
+          "q": "Clint Eastwood Rawhide 1960 publicity still Rowdy Yates",
+          "at": 9
         }
       ],
       "year": 1959,
@@ -281,25 +243,13 @@
         {
           "kind": "photo",
           "q": "Sergio Leone 1964 director",
-          "star": false,
-          "src": "assets/b08-0.jpg",
-          "credit": "Reddit",
-          "source": "https://www.reddit.com/r/Moviesinthemaking/comments/y538ac/sergio_leone_directing_a_fistful_of_dollars_1964/",
-          "w": 2800,
-          "h": 1850
+          "star": false
         },
         {
           "kind": "clip",
-          "q": "Tabernas desert Almeria western film set",
+          "q": "Almeria desert spaghetti western 1960s landscape",
           "star": false,
-          "at": 11,
-          "src": "assets/b08-1.mp4",
-          "credit": "133hmzcraig@gmail.com / ArchiveOrg",
-          "source": "https://archive.org/details/the-good-the-bad-and-the-ugly_202602",
-          "src_t": 6854.4,
-          "w": 2542,
-          "h": 1080,
-          "dur": 4.97
+          "at": 11
         }
       ],
       "lower": {
@@ -430,15 +380,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho",
-          "src": "assets/b12-0.mp4",
-          "credit": "A Fistful of Dollars / Dailymotion",
-          "source": "https://www.dailymotion.com/video/x35zfvr",
-          "src_t": 84.5,
-          "w": 1920,
-          "h": 1080,
-          "dur": 2.1,
-          "face": 0.49
+          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
         }
       ],
       "vo": "vo/b12.flac",
@@ -589,14 +531,7 @@
         {
           "kind": "clip",
           "q": "Burt Reynolds talk show interview 1970s",
-          "star": false,
-          "src": "assets/b16-0.mp4",
-          "credit": "ReelzChannel / Dailymotion",
-          "source": "https://www.dailymotion.com/video/xmffwk",
-          "src_t": 35.4,
-          "w": 1920,
-          "h": 1080,
-          "dur": 4.97
+          "star": false
         }
       ],
       "vo": "vo/b16.flac",
@@ -644,5 +579,15 @@
   ],
   "voice": "aura-2-zeus-en",
   "fps": 30,
-  "rejected": []
+  "rejected": [
+    "https://www.dailymotion.com/video/x8340gd",
+    "https://www.superstock.com/asset/burt-reynolds-riverboat-directed-william-witney-richard-bartlett-hollingsworth-morse/4409-18028317?srsltid=AYCX9vLQeHQYXv6txi7COGgSsNdm9ZyoDx_j4w-G42hUjuubcWgGEgq5",
+    "https://www.dailymotion.com/video/x2dadte",
+    "https://www.dailymotion.com/video/x4mxbqz",
+    "https://www.themoviedb.org/person/190",
+    "https://www.reddit.com/r/Moviesinthemaking/comments/y538ac/sergio_leone_directing_a_fistful_of_dollars_1964/",
+    "https://archive.org/details/the-good-the-bad-and-the-ugly_202602",
+    "https://www.dailymotion.com/video/x35zfvr",
+    "https://www.dailymotion.com/video/xmffwk"
+  ]
 }
