@@ -32,7 +32,17 @@
         {
           "kind": "photo",
           "q": "young Clint Eastwood 1955 Universal contract player",
-          "at": 4
+          "at": 4,
+          "src": "assets/b00-1.jpg",
+          "credit": "3DVF",
+          "source": "https://3dvf.com/en/clint-eastwood-got-a-cold-welcome-on-his-first-set-what-really-happened/",
+          "w": 1200,
+          "h": 800,
+          "focus": {
+            "x": 0.584,
+            "y": 0.341
+          },
+          "face": 0.46
         }
       ],
       "year": "1950s",
@@ -58,7 +68,12 @@
         {
           "kind": "photo",
           "q": "Burt Reynolds 1959 portrait",
-          "star": false
+          "star": false,
+          "src": "assets/b01-0.jpg",
+          "credit": "SuperStock",
+          "source": "https://www.superstock.com/asset/burt-reynolds-riverboat-directed-william-witney-richard-bartlett-hollingsworth-morse/4409-18028317?srsltid=AYCX9vLQeHQYXv6txi7COGgSsNdm9ZyoDx_j4w-G42hUjuubcWgGEgq5",
+          "w": 1024,
+          "h": 1024
         }
       ],
       "lower": {
@@ -115,7 +130,17 @@
       "shots": [
         {
           "kind": "photo",
-          "q": "Clint Eastwood 1950s close up portrait"
+          "q": "Clint Eastwood 1950s close up portrait",
+          "src": "assets/b03-0.jpg",
+          "credit": "ArtPhotoLimited",
+          "source": "https://www.artphotolimited.com/us-en/fine-art-photography/movie/actor/american-actors/clint-eastwood/photo/bridgeman-images/clint-eastwood-1955",
+          "w": 781,
+          "h": 1000,
+          "focus": {
+            "x": 0.436,
+            "y": 0.342
+          },
+          "face": 0.59
         }
       ],
       "vo": "vo/b03.flac",
@@ -137,7 +162,17 @@
       "shots": [
         {
           "kind": "photo",
-          "q": "Clint Eastwood young profile portrait 1950s"
+          "q": "Clint Eastwood young profile portrait 1950s",
+          "src": "assets/b04-0.jpg",
+          "credit": "Wikipedia",
+          "source": "https://en.wikipedia.org/wiki/Early_life_and_work_of_Clint_Eastwood",
+          "w": 984,
+          "h": 1274,
+          "focus": {
+            "x": 0.41,
+            "y": 0.384
+          },
+          "face": 0.55
         }
       ],
       "vo": "vo/b04.flac",
@@ -246,7 +281,12 @@
         {
           "kind": "photo",
           "q": "Sergio Leone 1964 director",
-          "star": false
+          "star": false,
+          "src": "assets/b08-0.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/Moviesinthemaking/comments/y538ac/sergio_leone_directing_a_fistful_of_dollars_1964/",
+          "w": 2800,
+          "h": 1850
         },
         {
           "kind": "clip",
@@ -293,19 +333,34 @@
         {
           "kind": "photo",
           "q": "Henry Fonda 1960s portrait",
-          "star": false
+          "star": false,
+          "src": "assets/b09-0.jpg",
+          "credit": "eBay",
+          "source": "https://www.ebay.com/itm/384920269028",
+          "w": 600,
+          "h": 739
         },
         {
           "kind": "photo",
           "q": "Charles Bronson 1960s portrait",
           "star": false,
-          "at": 3
+          "at": 3,
+          "src": "assets/b09-1.jpg",
+          "credit": "Wikipedia",
+          "source": "https://en.wikipedia.org/wiki/Charles_Bronson",
+          "w": 800,
+          "h": 1109
         },
         {
           "kind": "photo",
           "q": "James Coburn 1960s portrait",
           "star": false,
-          "at": 6
+          "at": 6,
+          "src": "assets/b09-2.jpg",
+          "credit": "Wikipedia",
+          "source": "https://en.wikipedia.org/wiki/James_Coburn",
+          "w": 734,
+          "h": 937
         }
       ],
       "vo": "vo/b09.flac",
@@ -441,7 +496,17 @@
           "from": [
             "tmdb",
             "images"
-          ]
+          ],
+          "src": "assets/b14-0.jpg",
+          "credit": "IMDb",
+          "source": "https://www.imdb.com/title/tt0058461/",
+          "w": 1774,
+          "h": 757,
+          "focus": {
+            "x": 0.468,
+            "y": 0.487
+          },
+          "face": 0.54
         },
         {
           "kind": "clip",
@@ -491,7 +556,12 @@
         {
           "kind": "photo",
           "q": "Clint Eastwood Burt Reynolds together",
-          "star": false
+          "star": false,
+          "src": "assets/b15-0.jpg",
+          "credit": "Holden Luntz Gallery",
+          "source": "https://www.holdenluntz.com/artists/harry-benson/burt-reynolds-clint-eastwood/",
+          "w": 2400,
+          "h": 1748
         }
       ],
       "vo": "vo/b15.flac",
@@ -546,7 +616,17 @@
       "shots": [
         {
           "kind": "photo",
-          "q": "Clint Eastwood 1960s portrait black and white"
+          "q": "Clint Eastwood 1960s portrait black and white",
+          "src": "assets/b17-0.jpg",
+          "credit": "Photos.com by Getty Images",
+          "source": "https://photos.com/featured/clint-eastwood-hulton-archive.html?srsltid=AYCX9vIyq-USf4gjG7-g2uZKpeoc-0-7HaINmN8LL-RIH7O5ZIrQExs2",
+          "w": 701,
+          "h": 900,
+          "focus": {
+            "x": 0.492,
+            "y": 0.352
+          },
+          "face": 0.55
         }
       ],
       "vo": "vo/b17.flac",
