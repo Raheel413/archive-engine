@@ -83,8 +83,8 @@ def need(cmd):
         sys.exit(f"{cmd} is not installed or not on PATH")
 
 
-def get_json(url, **kw):
-    r = requests.get(url, headers=UA, timeout=25, **kw)
+def get_json(url, wiki=False, **kw):
+    r = requests.get(url, headers=WIKI_UA if wiki else UA, timeout=25, **kw)
     r.raise_for_status()
     return r.json()
 
@@ -213,7 +213,12 @@ def site_videos(q, site):
     return [{"url": v["link"], "title": v.get("title", ""), "who": ""} for v in serper("videos", f"{q} site:{site}") if site in v.get("link", "")]
 
 
+YOUTUBE_BLOCKED = bool(os.environ.get("GITHUB_ACTIONS")) and not os.environ.get("HUNT_PROXY")
+
+
 def video_candidates(q, sources, year=None, archive_first=True):
+    if YOUTUBE_BLOCKED:
+        sources = [s for s in sources if s != "youtube"]
     qy = f"{q} {year}" if year and str(year) not in q else q
     lists = []
     for s in sources:
@@ -241,11 +246,14 @@ def video_candidates(q, sources, year=None, archive_first=True):
     return out
 
 
+WIKI_UA = {"User-Agent": "archive-engine/0.1 (https://github.com/Raheel413/archive-engine; documentary research)"}
+
+
 def commons_search(q, n=8):
     try:
         j = get_json("https://commons.wikimedia.org/w/api.php",
                      params={"action": "query", "format": "json", "generator": "search", "gsrnamespace": 6, "gsrsearch": q,
-                             "gsrlimit": n, "prop": "imageinfo", "iiprop": "url|size|extmetadata", "iiurlwidth": 2400})
+                             "gsrlimit": n, "prop": "imageinfo", "iiprop": "url|size|extmetadata", "iiurlwidth": 2400}, wiki=True)
         out = []
         for p in sorted(j.get("query", {}).get("pages", {}).values(), key=lambda p: p.get("index", 0)):
             ii = (p.get("imageinfo") or [{}])[0]
@@ -268,17 +276,33 @@ def google_images(q, n=10):
              "w": r.get("imageWidth"), "h": r.get("imageHeight")} for r in serper("images", q, n) if r.get("imageUrl")]
 
 
+def shot_year(shot):
+    y = shot.get("year")
+    if y and str(y)[:4].isdigit():
+        return int(str(y)[:4]) + (5 if str(y).endswith("s") else 0)
+    m = re.search(r"\b(19[2-9]\d|20[0-2]\d)(s?)\b", shot.get("q", ""))
+    return int(m.group(1)) + (5 if m.group(2) else 0) if m else None
+
+
+ERA = [None, None]  # film.star.era, set in main()
+
+
 def image_candidates(shot, star, tm, pid):
-    q, sources, year = shot.get("q", ""), shot.get("from") or (PRINT_SOURCES if shot["kind"] == "print" else PHOTO_SOURCES), shot.get("year")
+    q, sources, year = shot.get("q", ""), shot.get("from") or (PRINT_SOURCES if shot["kind"] == "print" else PHOTO_SOURCES), shot_year(shot)
     lists = []
     for s in sources:
         if s == "tmdb" and tm.ok:
             if shot.get("film"):
                 lists.append(tm.movie_images(shot["film"], shot.get("year"), "posters" if shot["kind"] == "poster" else "backdrops"))
+                if shot["kind"] == "photo" and pid and shot.get("star", True):  # stills of the star tagged with this film
+                    lists.append([c for c in tm.tagged(pid) if c.get("film", "").lower() == shot["film"].lower()])
             elif shot["kind"] == "photo" and pid and shot.get("star", True):  # tagged stills are of the star only
                 tagged = tm.tagged(pid)
-                if year:  # stills closest to the year first
-                    tagged.sort(key=lambda c: abs((c.get("year") or 3000) - int(year)))
+                if year:  # only stills from around that year, closest first
+                    tagged = [c for c in tagged if c.get("year") and abs(c["year"] - year) <= 6]
+                    tagged.sort(key=lambda c: abs(c["year"] - year))
+                elif ERA[0]:
+                    tagged = [c for c in tagged if c.get("year") and ERA[0] - 2 <= c["year"] <= ERA[1] + 2]
                 lists.append(tagged)
         elif s == "commons":
             lists.append(commons_search(q))
@@ -459,7 +483,7 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
         cands = [{"url": shot["url"], "title": "", "who": ""}]
     else:
         q = shot.get("q") or line
-        cands = video_candidates(q, shot.get("from") or CLIP_SOURCES, shot.get("year"))
+        cands = video_candidates(q, shot.get("from") or CLIP_SOURCES, shot_year(shot))
     tries = 0
     for c in cands:
         if c["url"] in used:
@@ -515,7 +539,7 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
             if need_face and score < facemod.MATCH:
                 log(f"      shot at {start:.1f}s: not {star} (face {score:.2f})")
                 continue
-            picked = (start, take, score)
+            picked = (start, take, float(score))
             break
         if not picked:
             continue
@@ -528,7 +552,7 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
         used.update([c["url"], page])
         t_src = (a or 0) + start
         shot.update({"src": f"assets/{sid}.mp4", "credit": site_name(info, c.get("who", "")), "source": page, "src_t": round(t_src, 1),
-                     "w": w2, "h": h2, "dur": round(min(d2, MAX_CLIP), 2), **({"face": round(score, 2)} if need_face and chk.faces else {})})
+                     "w": w2, "h": h2, "dur": round(min(d2, MAX_CLIP), 2), **({"face": round(float(score), 2)} if need_face and chk.faces else {})})
         log(f"      got {take:.1f}s at {t_src:.1f}s of the source, {w}x{h} -> {w2}x{h2}  ({shot['credit']})")
         return True
     return False
@@ -701,7 +725,8 @@ def hunt_soundbite(shot, sid, line, film_dir, used, args, chk, star):
 
 def fetch_image(url, page):
     from PIL import Image
-    r = requests.get(url, headers={**UA, "Referer": page}, timeout=30)
+    h = WIKI_UA if "wikimedia.org" in url else {**UA, "Referer": page}
+    r = requests.get(url, headers=h, timeout=30)
     r.raise_for_status()
     img = Image.open(io.BytesIO(r.content))
     img.load()
@@ -787,7 +812,7 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
                     log(f"    skip image: not {star} (face {score:.2f})")
                     continue
                 if box:
-                    focus = {"x": round((box[0] + box[2] / 2) / w, 3), "y": round((box[1] + box[3] / 2) / h, 3)}
+                    focus = {"x": round(float((box[0] + box[2] / 2) / w), 3), "y": round(float((box[1] + box[3] / 2) / h), 3)}
         img.thumbnail((2800, 2800), Image.LANCZOS)
         out = film_dir / "assets" / f"{sid}.jpg"
         out.parent.mkdir(exist_ok=True)
@@ -799,7 +824,7 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
         if focus:
             shot["focus"] = focus
         if score is not None and chk.faces:
-            shot["face"] = round(score, 2)
+            shot["face"] = round(float(score), 2)
         log(f"    got {kind} {img.size[0]}x{img.size[1]}  ({c['credit']})")
         return True
     return False
@@ -831,6 +856,8 @@ def main():
     film_dir = Path(args.film).resolve()
     film = json.loads((film_dir / "film.json").read_text(encoding="utf-8"))
     star = film["star"]["name"]
+    if film["star"].get("era"):
+        ERA[:] = film["star"]["era"]
     CACHE.mkdir(exist_ok=True)
     redo = {s.strip() for s in args.redo.split(",") if s.strip()}
     only = {s.strip() for s in args.only.split(",") if s.strip()}
