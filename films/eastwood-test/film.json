@@ -5,7 +5,8 @@
     "era": [
       1955,
       1970
-    ]
+    ],
+    "tmdb": 190
   },
   "look": {
     "grain": 0.06,
@@ -19,7 +20,14 @@
         {
           "kind": "clip",
           "q": "Universal Studios backlot 1950s",
-          "star": false
+          "star": false,
+          "src": "assets/b00-0.mp4",
+          "credit": "Megalextoria / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x8340gd",
+          "src_t": 188.8,
+          "w": 1440,
+          "h": 1080,
+          "dur": 4.97
         },
         {
           "kind": "photo",
@@ -27,7 +35,21 @@
           "at": 4
         }
       ],
-      "year": "1950s"
+      "year": "1950s",
+      "vo": "vo/b00.flac",
+      "vo_dur": 4.72,
+      "words": [
+        0.08,
+        0.32,
+        0.92,
+        1.36,
+        1.84,
+        2.24,
+        2.56,
+        2.8,
+        3.04,
+        3.6
+      ]
     },
     {
       "seg": "hook",
@@ -42,7 +64,24 @@
       "lower": {
         "name": "Burt Reynolds",
         "role": "Fired by Universal the same year"
-      }
+      },
+      "vo": "vo/b01.flac",
+      "vo_dur": 3.76,
+      "words": [
+        0.08,
+        0.4,
+        0.8,
+        0.88,
+        1.04,
+        1.2,
+        1.36,
+        1.52,
+        1.6,
+        1.84,
+        2.16,
+        2.48,
+        2.64
+      ]
     },
     {
       "seg": "hook",
@@ -52,6 +91,14 @@
           "kind": "clip",
           "q": "young Clint Eastwood 1950s screen test"
         }
+      ],
+      "vo": "vo/b02.flac",
+      "vo_dur": 1.76,
+      "words": [
+        0.08,
+        0.32,
+        0.56,
+        0.88
       ]
     },
     {
@@ -62,6 +109,18 @@
           "kind": "photo",
           "q": "Clint Eastwood 1950s close up portrait"
         }
+      ],
+      "vo": "vo/b03.flac",
+      "vo_dur": 2.445,
+      "words": [
+        0.08,
+        0.32,
+        0.48,
+        0.56,
+        0.8,
+        1.04,
+        1.2,
+        1.52
       ]
     },
     {
@@ -72,6 +131,18 @@
           "kind": "photo",
           "q": "Clint Eastwood young profile portrait 1950s"
         }
+      ],
+      "vo": "vo/b04.flac",
+      "vo_dur": 2.8,
+      "words": [
+        0.08,
+        0.4,
+        0.56,
+        0.96,
+        1.2,
+        1.52,
+        1.68,
+        1.92
       ]
     },
     {
@@ -82,6 +153,15 @@
           "kind": "clip",
           "q": "Clint Eastwood 1960s interview"
         }
+      ],
+      "vo": "vo/b05.flac",
+      "vo_dur": 2.67,
+      "words": [
+        0.08,
+        0.32,
+        0.72,
+        0.96,
+        1.28
       ]
     },
     {
@@ -103,7 +183,27 @@
           "at": 9
         }
       ],
-      "year": 1959
+      "year": 1959,
+      "vo": "vo/b07.flac",
+      "vo_dur": 4.36,
+      "words": [
+        0.08,
+        0.4,
+        0.56,
+        0.72,
+        1.04,
+        1.12,
+        1.28,
+        1.52,
+        1.68,
+        1.92,
+        2.16,
+        2.4,
+        2.48,
+        2.8,
+        3.12,
+        3.44
+      ]
     },
     {
       "seg": "line",
@@ -124,7 +224,26 @@
       "lower": {
         "name": "Sergio Leone",
         "role": "Director"
-      }
+      },
+      "vo": "vo/b08.flac",
+      "vo_dur": 5.695,
+      "words": [
+        0.08,
+        0.38,
+        0.68,
+        1.16,
+        1.56,
+        1.88,
+        2.12,
+        2.6,
+        3,
+        3.4,
+        3.56,
+        3.72,
+        4.12,
+        4.44,
+        4.6
+      ]
     },
     {
       "seg": "line",
@@ -147,6 +266,21 @@
           "star": false,
           "at": 6
         }
+      ],
+      "vo": "vo/b09.flac",
+      "vo_dur": 4.08,
+      "words": [
+        0.08,
+        0.76,
+        1.04,
+        1.28,
+        1.76,
+        1.84,
+        2.08,
+        2.56,
+        2.72,
+        2.96,
+        3.12
       ]
     },
     {
@@ -156,8 +290,31 @@
         {
           "kind": "page",
           "url": "https://en.wikipedia.org/wiki/A_Fistful_of_Dollars",
-          "find": "Eastwood was paid $15,000 for his role"
+          "find": "Eastwood was paid $15,000 for his role",
+          "w": 1760,
+          "h": 1100,
+          "highlight": [
+            {
+              "x": 0.29659090909090907,
+              "y": 0.4816193181818182,
+              "w": 0.3241832386363636,
+              "h": 0.03636363636363636
+            }
+          ],
+          "src": "assets/b10-0.png",
+          "credit": "en.wikipedia.org",
+          "source": "https://en.wikipedia.org/wiki/A_Fistful_of_Dollars"
         }
+      ],
+      "vo": "vo/b10.flac",
+      "vo_dur": 2.43,
+      "words": [
+        0.08,
+        0.32,
+        0.56,
+        0.72,
+        1.12,
+        1.44
       ]
     },
     {
@@ -179,6 +336,14 @@
           "kind": "clip",
           "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
         }
+      ],
+      "vo": "vo/b12.flac",
+      "vo_dur": 1.76,
+      "words": [
+        0.08,
+        0.32,
+        0.48,
+        0.64
       ]
     },
     {
@@ -197,7 +362,18 @@
           ]
         }
       ],
-      "year": 1964
+      "year": 1964,
+      "vo": "vo/b13.flac",
+      "vo_dur": 2.385,
+      "words": [
+        0.08,
+        0.32,
+        0.48,
+        0.72,
+        0.88,
+        1.36,
+        1.6
+      ]
     },
     {
       "seg": "line",
@@ -218,6 +394,32 @@
           "q": "A Fistful of Dollars Clint Eastwood close up",
           "at": 10
         }
+      ],
+      "vo": "vo/b14.flac",
+      "vo_dur": 7.34,
+      "words": [
+        0.08,
+        0.38,
+        0.86,
+        1.1,
+        1.34,
+        1.5,
+        1.82,
+        2.14,
+        2.38,
+        2.86,
+        3.02,
+        3.18,
+        3.42,
+        3.58,
+        3.9,
+        4.38,
+        4.78,
+        4.94,
+        5.18,
+        5.5,
+        5.82,
+        6.06
       ]
     },
     {
@@ -229,6 +431,23 @@
           "q": "Clint Eastwood Burt Reynolds together",
           "star": false
         }
+      ],
+      "vo": "vo/b15.flac",
+      "vo_dur": 3.52,
+      "words": [
+        0.08,
+        0.4,
+        0.64,
+        0.88,
+        0.96,
+        1.12,
+        1.28,
+        1.36,
+        1.52,
+        1.68,
+        1.92,
+        2.16,
+        2.4
       ]
     },
     {
@@ -240,6 +459,16 @@
           "q": "Burt Reynolds talk show interview 1970s",
           "star": false
         }
+      ],
+      "vo": "vo/b16.flac",
+      "vo_dur": 2.24,
+      "words": [
+        0.08,
+        0.32,
+        0.56,
+        0.8,
+        1.04,
+        1.2
       ]
     },
     {
@@ -250,9 +479,21 @@
           "kind": "photo",
           "q": "Clint Eastwood 1960s portrait black and white"
         }
+      ],
+      "vo": "vo/b17.flac",
+      "vo_dur": 2.27,
+      "words": [
+        0.08,
+        0.4,
+        0.72,
+        0.88,
+        1.04,
+        1.2,
+        1.6
       ]
     }
   ],
   "voice": "aura-2-zeus-en",
-  "fps": 30
+  "fps": 30,
+  "rejected": []
 }
