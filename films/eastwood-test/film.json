@@ -20,7 +20,14 @@
         {
           "kind": "clip",
           "q": "Universal Studios 1950s newsreel",
-          "star": false
+          "star": false,
+          "src": "assets/b00-0.mp4",
+          "credit": "skipe@mindspring.com / ArchiveOrg",
+          "source": "https://archive.org/details/1958-03-13_Dead_A-Bomb_Hits_US_Town",
+          "src_t": 69.6,
+          "w": 1440,
+          "h": 1080,
+          "dur": 4.97
         },
         {
           "kind": "photo",
@@ -61,7 +68,12 @@
         {
           "kind": "photo",
           "q": "Burt Reynolds 1959 portrait",
-          "star": false
+          "star": false,
+          "src": "assets/b01-0.jpg",
+          "credit": "Oregon Live",
+          "source": "https://www.oregonlive.com/movies/2015/05/burt_reynolds_appearance_shock.html",
+          "w": 1200,
+          "h": 1049
         }
       ],
       "lower": {
@@ -92,7 +104,15 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "young Clint Eastwood 1956 film scene"
+          "q": "young Clint Eastwood 1956 film scene",
+          "src": "assets/b02-0.mp4",
+          "credit": "Just a Young Fool ! / Dailymotion",
+          "source": "https://www.dailymotion.com/video/xy0za",
+          "src_t": 31.4,
+          "w": 1440,
+          "h": 1080,
+          "dur": 4.67,
+          "face": 0.53
         }
       ],
       "vo": "vo/b02.flac",
@@ -211,7 +231,17 @@
         {
           "kind": "photo",
           "q": "Clint Eastwood Rawhide 1960 publicity still Rowdy Yates",
-          "at": 9
+          "at": 9,
+          "src": "assets/b07-1.jpg",
+          "credit": "Collider",
+          "source": "https://collider.com/clint-eastwood-rawhide-western-never-directed-episode/",
+          "w": 1200,
+          "h": 675,
+          "focus": {
+            "x": 0.504,
+            "y": 0.374
+          },
+          "face": 0.57
         }
       ],
       "year": 1959,
@@ -243,13 +273,25 @@
         {
           "kind": "photo",
           "q": "Sergio Leone 1964 director",
-          "star": false
+          "star": false,
+          "src": "assets/b08-0.jpg",
+          "credit": "Wikipedia",
+          "source": "https://en.wikipedia.org/wiki/Sergio_Leone",
+          "w": 802,
+          "h": 1154
         },
         {
           "kind": "clip",
           "q": "Almeria desert spaghetti western 1960s landscape",
           "star": false,
-          "at": 11
+          "at": 11,
+          "src": "assets/b08-1.mp4",
+          "credit": "pinterest4mybus / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x98vfbw",
+          "src_t": 3100.5,
+          "w": 1920,
+          "h": 1080,
+          "dur": 4.97
         }
       ],
       "lower": {
@@ -380,7 +422,15 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
+          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho",
+          "src": "assets/b12-0.mp4",
+          "credit": "For a Few Dollars More / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x45c9wi",
+          "src_t": 85,
+          "w": 1920,
+          "h": 1080,
+          "dur": 4.97,
+          "face": 0.37
         }
       ],
       "vo": "vo/b12.flac",
@@ -482,7 +532,7 @@
         3.42,
         3.58,
         3.9,
-        4.46,
+        4.38,
         4.78,
         4.94,
         5.18,
