@@ -89,7 +89,15 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "young Clint Eastwood 1950s screen test"
+          "q": "young Clint Eastwood 1950s screen test",
+          "src": "assets/b02-0.mp4",
+          "credit": "NY Daily News / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x2dadte",
+          "src_t": 55.8,
+          "w": 1920,
+          "h": 1080,
+          "dur": 2.23,
+          "face": 0.71
         }
       ],
       "vo": "vo/b02.flac",
@@ -151,7 +159,15 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Clint Eastwood 1960s interview"
+          "q": "Clint Eastwood 1960s interview",
+          "src": "assets/b05-0.mp4",
+          "credit": "PremiereFR / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x4mxbqz",
+          "src_t": 92.3,
+          "w": 1440,
+          "h": 1080,
+          "dur": 5,
+          "face": 0.67
         }
       ],
       "vo": "vo/b05.flac",
@@ -175,12 +191,30 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Clint Eastwood Rawhide Rowdy Yates 1959"
+          "q": "Clint Eastwood Rawhide Rowdy Yates 1959",
+          "src": "assets/b07-0.mp4",
+          "credit": "Gicajordi2 / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x2vebld",
+          "src_t": 87.7,
+          "w": 1920,
+          "h": 1080,
+          "dur": 4.97,
+          "face": 0.38
         },
         {
           "kind": "photo",
           "q": "Clint Eastwood Rawhide publicity photo",
-          "at": 9
+          "at": 9,
+          "src": "assets/b07-1.jpg",
+          "credit": "The Good, the Bad and the Ugly (1966) / TMDB",
+          "source": "https://www.themoviedb.org/person/190",
+          "w": 1000,
+          "h": 1500,
+          "focus": {
+            "x": 0.431,
+            "y": 0.123
+          },
+          "face": 0.54
         }
       ],
       "year": 1959,
@@ -218,7 +252,14 @@
           "kind": "clip",
           "q": "Tabernas desert Almeria western film set",
           "star": false,
-          "at": 11
+          "at": 11,
+          "src": "assets/b08-1.mp4",
+          "credit": "133hmzcraig@gmail.com / ArchiveOrg",
+          "source": "https://archive.org/details/the-good-the-bad-and-the-ugly_202602",
+          "src_t": 6854.4,
+          "w": 2542,
+          "h": 1080,
+          "dur": 4.97
         }
       ],
       "lower": {
@@ -334,7 +375,15 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
+          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho",
+          "src": "assets/b12-0.mp4",
+          "credit": "A Fistful of Dollars / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x35zfvr",
+          "src_t": 84.5,
+          "w": 1920,
+          "h": 1080,
+          "dur": 2.1,
+          "face": 0.49
         }
       ],
       "vo": "vo/b12.flac",
@@ -359,7 +408,12 @@
           "from": [
             "tmdb",
             "images"
-          ]
+          ],
+          "src": "assets/b13-0.jpg",
+          "credit": "A Fistful of Dollars (1964) / TMDB",
+          "source": "https://www.themoviedb.org/movie/391",
+          "w": 1867,
+          "h": 2800
         }
       ],
       "year": 1964,
@@ -392,7 +446,15 @@
         {
           "kind": "clip",
           "q": "A Fistful of Dollars Clint Eastwood close up",
-          "at": 10
+          "at": 10,
+          "src": "assets/b14-1.mp4",
+          "credit": "A Fistful of Dollars / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x45177n",
+          "src_t": 21.2,
+          "w": 1920,
+          "h": 1080,
+          "dur": 1.8,
+          "face": 0.45
         }
       ],
       "vo": "vo/b14.flac",
@@ -457,7 +519,14 @@
         {
           "kind": "clip",
           "q": "Burt Reynolds talk show interview 1970s",
-          "star": false
+          "star": false,
+          "src": "assets/b16-0.mp4",
+          "credit": "ReelzChannel / Dailymotion",
+          "source": "https://www.dailymotion.com/video/xmffwk",
+          "src_t": 35.4,
+          "w": 1920,
+          "h": 1080,
+          "dur": 4.97
         }
       ],
       "vo": "vo/b16.flac",
