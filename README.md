@@ -23,6 +23,7 @@ What it does by itself:
 | `DEEPGRAM_API_KEY` | cutting your voiceover into beats; finding soundbites in videos without captions | the key you already use |
 | `TMDB_API_KEY` | star portraits (face-check references), film stills, posters | themoviedb.org → Settings → API (free) |
 | `YOUTUBE_API_KEY` | YouTube search | console.cloud.google.com → YouTube Data API v3 → API key |
+| `GEMINI_API_KEY` | vision check: every frame must be the right person, the right decade, with no logos, subtitles or watermarks | aistudio.google.com → Get API key |
 | `SERPER_API_KEY` | Google search for Vimeo, OK.ru, images, LIFE scans | serper.dev |
 
 Optional, `HUNT_PROXY`: a residential proxy URL (`http://user:pass@host:port`). With it, GitHub downloads YouTube itself and you never need the laptop step.

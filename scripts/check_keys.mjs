@@ -19,6 +19,9 @@ const checks = [
     fetch(`https://api.themoviedb.org/3/search/person?query=Steve%20McQueen&api_key=${k('TMDB_API_KEY')}`, T())],
   ['YOUTUBE_API_KEY', 'YouTube search', () =>
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=AP%20Archive&type=video&maxResults=1&key=${k('YOUTUBE_API_KEY')}`, T())],
+  ['GEMINI_API_KEY', 'vision check: right decade, right subject, no logos', () =>
+    fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent', {...T(), method: 'POST',
+      headers: {'x-goog-api-key': k('GEMINI_API_KEY'), 'Content-Type': 'application/json'}, body: JSON.stringify({contents: [{parts: [{text: 'Reply OK'}]}]})})],
   ['SERPER_API_KEY', 'Google search: Vimeo, OK.ru, images, LIFE scans', () =>
     fetch('https://google.serper.dev/search', {...T(), method: 'POST', headers: {'X-API-KEY': k('SERPER_API_KEY'), 'Content-Type': 'application/json'}, body: JSON.stringify({q: 'Steve McQueen', num: 1})})],
 ];

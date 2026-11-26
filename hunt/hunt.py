@@ -65,7 +65,7 @@ JUNK = re.compile(r"\b(ai[- ]generated|ai art|deepfake|midjourney|recreat|reacti
 
 # ---------------------------------------------------------------- setup
 
-KEYS = ("YOUTUBE_API_KEY", "SERPER_API_KEY", "TMDB_API_KEY", "TMDB_TOKEN", "DEEPGRAM_API_KEY", "HUNT_PROXY")
+KEYS = ("GEMINI_API_KEY", "YOUTUBE_API_KEY", "SERPER_API_KEY", "TMDB_API_KEY", "TMDB_TOKEN", "DEEPGRAM_API_KEY", "HUNT_PROXY")
 
 
 def load_env():
@@ -136,6 +136,8 @@ class TMDB:
         """Film stills and set photos tagged with the star."""
         out = []
         for p in self.get(f"/person/{pid}/tagged_images").get("results", []):
+            if p.get("image_type") == "poster":
+                continue
             m = p.get("media") or {}
             title = m.get("title") or m.get("name") or ""
             year = (m.get("release_date") or m.get("first_air_date") or "")[:4]
@@ -454,6 +456,50 @@ def ocr_words(png_bytes):
     return out
 
 
+def vision(jpeg_bytes, shot, line, star, era):
+    """Gemini looks at the frame: right subject, right decade, nothing burned on top. (ok, reason)"""
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key or not jpeg_bytes:
+        return True, "unchecked"
+    import base64
+    y = shot_year(shot)
+    when = f"around {y}" if y else (f"between {era[0]} and {era[1]}" if era[0] else "any time")
+    who = f"{star} must be in it" if shot.get("star", shot["kind"] in ("clip", "photo", "soundbite")) else "it does not need to show the star"
+    prompt = (
+        f"You check footage for a documentary about {star}.\n"
+        f"This frame is a candidate for the search: \"{shot.get('q') or shot.get('film') or ''}\" ({shot['kind']}).\n"
+        f"Narration over it: \"{line}\"\nIt should be from {when}; {who}.\n"
+        "Reply with JSON only: {\"subject\": true|false, \"era\": true|false, \"overlay\": true|false, \"reason\": \"under 12 words\"}\n"
+        "subject: the frame shows what the search asks for (right person or place, right kind of picture; a poster or title card only when a poster was asked for).\n"
+        "era: judge by the person's age, film stock, colour, clothes, cars and hair; false if it is clearly from a different decade (for example an old man when a young man in the 1950s is wanted, or modern digital video for 1950s footage).\n"
+        "overlay: true if a TV channel logo, news banner, burned-in subtitles, a watermark, a stock-photo stamp, or big added text is on the frame."
+    )
+    model = os.environ.get("HUNT_VISION_MODEL", "gemini-flash-latest")
+    try:
+        r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                          headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+                          json={"contents": [{"parts": [{"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(jpeg_bytes).decode()}},
+                                                        {"text": prompt}]}],
+                                "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}, timeout=60)
+        r.raise_for_status()
+        text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+        j = json.loads(re.search(r"\{.*\}", text, re.S).group(0))
+        bad = [k for k, want in (("subject", True), ("era", True), ("overlay", False)) if bool(j.get(k)) != want]
+        return (not bad), ("" if not bad else ("/".join(bad) + ": ")) + str(j.get("reason", ""))
+    except Exception as e:
+        log(f"      vision check skipped: {str(e)[:120]}")
+        return True, "unchecked"
+
+
+def to_jpeg(png_or_jpeg, width=768):
+    from PIL import Image
+    im = Image.open(io.BytesIO(png_or_jpeg)).convert("RGB")
+    im.thumbnail((width, width))
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=85)
+    return b.getvalue()
+
+
 class Checker:
     def __init__(self, args, star_refs):
         self.args = args
@@ -533,8 +579,13 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
             take = min(sd, MAX_CLIP)
             start = s0 + max(0, (sd - take) / 2)
             mid = frame(path, start + take / 2, 960)
-            words = ocr_words(mid)
-            if len(words) >= 3:
+            words = []
+            for tt in (start + 0.2, start + take / 2, start + take - 0.2):
+                ws = ocr_words(mid if tt == start + take / 2 else frame(path, tt, 960))
+                if len(ws) >= 2:
+                    words = ws
+                    break
+            if words:
                 log(f"      shot at {start:.1f}s: text on screen ({' '.join(words[:5])})")
                 continue
             score, box = chk.face(mid) if need_face else (1.0, None)
@@ -545,6 +596,10 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
                     score, box = score2, box2
             if need_face and score < facemod.MATCH:
                 log(f"      shot at {start:.1f}s: not {star} (face {score:.2f})")
+                continue
+            ok, why = vision(to_jpeg(mid), shot, line, star, ERA)
+            if not ok:
+                log(f"      shot at {start:.1f}s: rejected by vision ({why})")
                 continue
             picked = (start, take, float(score))
             break
@@ -796,7 +851,7 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
         if min(w, h) < min_side or not (0.3 <= w / h <= 3.2):
             log(f"    skip image {w}x{h}")
             continue
-        if re.search(r"(alamy|shutterstock|gettyimages|istock|dreamstime|depositphotos|123rf)", c["url"] + c["page"], re.I):
+        if re.search(r"(alamy|shutterstock|gettyimages|getty|istock|dreamstime|depositphotos|123rf|superstock|photos\.com|granger|agefotostock|mediastorehouse|bridgeman|pond5|storyblocks|bigstock|canstock|vectorstock|wireimage)", c["url"] + c["page"], re.I):
             log("    skip image: stock site watermark")
             continue
         highlight, focus, score = None, None, None
@@ -820,6 +875,11 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
                     continue
                 if box:
                     focus = {"x": round(float((box[0] + box[2] / 2) / w), 3), "y": round(float((box[1] + box[3] / 2) / h), 3)}
+        if kind != "print":
+            ok, why = vision(to_jpeg(buf.getvalue()), shot, line, star, ERA)
+            if not ok:
+                log(f"    skip image: vision ({why})")
+                continue
         img.thumbnail((2800, 2800), Image.LANCZOS)
         out = film_dir / "assets" / f"{sid}.jpg"
         out.parent.mkdir(exist_ok=True)
