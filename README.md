@@ -25,6 +25,8 @@ What it does by itself:
 | `YOUTUBE_API_KEY` | YouTube search | console.cloud.google.com → YouTube Data API v3 → API key |
 | `SERPER_API_KEY` | Google search for Vimeo, OK.ru, images, LIFE scans | serper.dev |
 
+Optional, `HUNT_PROXY`: a residential proxy URL (`http://user:pass@host:port`). With it, GitHub downloads YouTube itself and you never need the laptop step.
+
 ### 2. Your laptop (YouTube blocks GitHub's machines, your home connection gets through)
 
 ```

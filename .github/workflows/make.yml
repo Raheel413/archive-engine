@@ -96,6 +96,7 @@ jobs:
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
+          HUNT_PROXY: ${{ secrets.HUNT_PROXY }}
         run: python hunt/hunt.py "films/${{ steps.pick.outputs.film }}"
 
       - name: Page screenshots

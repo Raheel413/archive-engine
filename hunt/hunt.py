@@ -304,6 +304,8 @@ def ydl_opts(args, out=None):
     o = {"quiet": True, "no_warnings": True, "noplaylist": True, "socket_timeout": 30, "retries": 2}
     if args.browser:
         o["cookiesfrombrowser"] = (args.browser,)
+    if os.environ.get("HUNT_PROXY"):  # residential proxy: lets GitHub's machines download from YouTube
+        o["proxy"] = os.environ["HUNT_PROXY"]
     cookies = os.environ.get("HUNT_COOKIES")
     if cookies and Path(cookies).exists():
         o["cookiefile"] = cookies
