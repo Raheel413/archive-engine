@@ -15,7 +15,7 @@ const voDir = path.join(dir, 'vo');
 const existing = fs.existsSync(voDir) ? fs.readdirSync(voDir).find((f) => /^voice\.(wav|mp3|m4a|flac|aac|ogg)$/i.test(f)) : null;
 if (!voice) { console.log('vo_tts: no "voice" in film.json, expecting your own recording'); process.exit(0); }
 if (existing && !flag('--force')) { console.log(`vo_tts: ${existing} already there`); process.exit(0); }
-const key = process.env.DEEPGRAM_API_KEY;
+const key = process.env.DEEPGRAM_API_KEY?.trim();
 if (!key) { console.error('Set DEEPGRAM_API_KEY'); process.exit(2); }
 fs.mkdirSync(voDir, {recursive: true});
 

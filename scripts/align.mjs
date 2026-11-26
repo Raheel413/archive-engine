@@ -24,7 +24,7 @@ const cache = voFile + '.words.json';
 let words;
 if (fs.existsSync(cache) && fs.statSync(cache).mtimeMs > fs.statSync(voFile).mtimeMs) words = JSON.parse(fs.readFileSync(cache, 'utf8'));
 else {
-  const key = process.env.DEEPGRAM_API_KEY;
+  const key = process.env.DEEPGRAM_API_KEY?.trim();
   if (!key) { console.error('Set DEEPGRAM_API_KEY'); process.exit(2); }
   const res = await fetch('https://api.deepgram.com/v1/listen?model=nova-3&language=en&punctuate=false&smart_format=false&numerals=false', {
     method: 'POST', headers: {Authorization: `Token ${key}`, 'content-type': 'application/octet-stream'}, body: fs.readFileSync(voFile),

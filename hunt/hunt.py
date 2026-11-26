@@ -65,6 +65,9 @@ JUNK = re.compile(r"\b(ai[- ]generated|ai art|deepfake|midjourney|recreat|reacti
 
 # ---------------------------------------------------------------- setup
 
+KEYS = ("YOUTUBE_API_KEY", "SERPER_API_KEY", "TMDB_API_KEY", "TMDB_TOKEN", "DEEPGRAM_API_KEY", "HUNT_PROXY")
+
+
 def load_env():
     env = ROOT / ".env"
     if env.exists():
@@ -72,6 +75,10 @@ def load_env():
             m = re.match(r"\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$", line)
             if m and not os.environ.get(m.group(1)):
                 os.environ[m.group(1)] = m.group(2).strip().strip('"').strip("'")
+    # pasted keys often carry a stray space or newline: clean them all
+    for k in KEYS:
+        if os.environ.get(k):
+            os.environ[k] = os.environ[k].strip().strip('"').strip("'").strip()
 
 
 def log(*a):
@@ -325,7 +332,7 @@ def image_candidates(shot, star, tm, pid):
 # ---------------------------------------------------------------- video helpers
 
 def ydl_opts(args, out=None):
-    o = {"quiet": True, "no_warnings": True, "noplaylist": True, "socket_timeout": 30, "retries": 2}
+    o = {"quiet": True, "no_warnings": True, "noprogress": True, "noplaylist": True, "socket_timeout": 30, "retries": 2}
     if args.browser:
         o["cookiesfrombrowser"] = (args.browser,)
     if os.environ.get("HUNT_PROXY"):  # residential proxy: lets GitHub's machines download from YouTube

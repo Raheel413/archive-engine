@@ -10,7 +10,7 @@ if (fs.existsSync('.env')) {
   }
 } else console.log('No .env file in this folder (run this inside archive-engine)\n');
 
-const k = (n) => process.env[n];
+const k = (n) => process.env[n]?.trim();
 const T = () => ({signal: AbortSignal.timeout(15000)}); // a fresh 15 s timer per request
 const checks = [
   ['DEEPGRAM_API_KEY', 'cut your voiceover, find soundbites', () =>
@@ -26,6 +26,7 @@ const checks = [
 let bad = 0;
 for (const [name, use, call] of checks) {
   if (!k(name)) { console.log(`MISSING  ${name}  (${use})`); bad++; continue; }
+  if (process.env[name] !== k(name)) console.log(`note     ${name} has a space or line break around it (cleaned automatically)`);
   process.stdout.write(`testing  ${name} ... `);
   try {
     const r = await call();
