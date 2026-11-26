@@ -250,7 +250,12 @@ def video_candidates(q, sources, year=None, archive_first=True):
     for i in range(max((len(l) for l in lists), default=0)):
         for l in lists:
             if i < len(l) and l[i]["url"] not in seen and not JUNK.search(l[i].get("title", "")):
-                seen.add(l[i]["url"])
+                u = l[i]["url"]
+                if "goto?url=" in u or "/url?" in u:  # search-engine redirect, not a video page
+                    continue
+                if YOUTUBE_BLOCKED and re.search(r"(youtube\.com|youtu\.be)/", u):
+                    continue
+                seen.add(u)
                 out.append(l[i])
     return out
 
@@ -464,7 +469,11 @@ def vision(jpeg_bytes, shot, line, star, era):
     import base64
     y = shot_year(shot)
     when = f"around {y}" if y else (f"between {era[0]} and {era[1]}" if era[0] else "any time")
-    who = f"{star} must be in it" if shot.get("star", shot["kind"] in ("clip", "photo", "soundbite")) else "it does not need to show the star"
+    if shot.get("star", shot["kind"] in ("clip", "photo", "soundbite")):
+        who = f"{star} must be in it"
+    else:
+        who = (f"it is NOT a shot of {star}: judge the subject only by the search words (another person, a place or an object); "
+               f"{star} being absent is correct")
     prompt = (
         f"You check footage for a documentary about {star}.\n"
         f"This frame is a candidate for the search: \"{shot.get('q') or shot.get('film') or ''}\" ({shot['kind']}).\n"
