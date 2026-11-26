@@ -89,7 +89,7 @@ jobs:
         run: node scripts/assets.mjs pull "films/${{ steps.pick.outputs.film }}"
 
       - name: Hunt footage (what GitHub can reach)
-        if: inputs.hunt != false
+        if: github.event_name != 'workflow_dispatch' || inputs.hunt
         continue-on-error: true
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -122,7 +122,7 @@ jobs:
           git config user.name "archive-engine bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$f/film.json" "$f/credits.md"
-          ls "$f"/vo/voice.* >/dev/null 2>&1 && git add "$f"/vo/voice.*
+          [ -d "$f/vo" ] && git add "$f/vo"   # adds voice.mp3; the cut pieces are ignored and live in the release
           if ! git diff --cached --quiet; then
             git commit -q -m "make: footage and voice for ${{ steps.pick.outputs.film }} [skip ci]"
             for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done

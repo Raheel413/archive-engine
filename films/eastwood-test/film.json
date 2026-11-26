@@ -253,5 +253,6 @@
       ]
     }
   ],
-  "voice": "aura-2-zeus-en"
+  "voice": "aura-2-zeus-en",
+  "fps": 30
 }
