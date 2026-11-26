@@ -9,7 +9,7 @@
     "tmdb": 190
   },
   "look": {
-    "grain": 0.07,
+    "grain": 0.065,
     "vignette": 0.42
   },
   "beats": [
@@ -194,7 +194,14 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Clint Eastwood 1960s TV interview black and white"
+          "q": "Clint Eastwood interview 1960s",
+          "from": [
+            "archive",
+            "dailymotion",
+            "vimeo",
+            "okru",
+            "web"
+          ]
         }
       ],
       "vo": "vo/b05.flac",
@@ -580,7 +587,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Burt Reynolds talk show interview 1970s",
+          "q": "Burt Reynolds interview 1970s",
           "star": false
         }
       ],
