@@ -474,21 +474,31 @@ def vision(jpeg_bytes, shot, line, star, era):
         "era: judge by the person's age, film stock, colour, clothes, cars and hair; false if it is clearly from a different decade (for example an old man when a young man in the 1950s is wanted, or modern digital video for 1950s footage).\n"
         "overlay: true if a TV channel logo, news banner, burned-in subtitles, a watermark, a stock-photo stamp, or big added text is on the frame."
     )
-    model = os.environ.get("HUNT_VISION_MODEL", "gemini-flash-latest")
-    try:
-        r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                          headers={"x-goog-api-key": key, "Content-Type": "application/json"},
-                          json={"contents": [{"parts": [{"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(jpeg_bytes).decode()}},
-                                                        {"text": prompt}]}],
-                                "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}, timeout=60)
-        r.raise_for_status()
-        text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
-        j = json.loads(re.search(r"\{.*\}", text, re.S).group(0))
-        bad = [k for k, want in (("subject", True), ("era", True), ("overlay", False)) if bool(j.get(k)) != want]
-        return (not bad), ("" if not bad else ("/".join(bad) + ": ")) + str(j.get("reason", ""))
-    except Exception as e:
-        log(f"      vision check skipped: {str(e)[:120]}")
-        return True, "unchecked"
+    models = [m for m in [os.environ.get("HUNT_VISION_MODEL"), "gemini-2.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite", "gemini-flash-lite-latest"] if m]
+    body = {"contents": [{"parts": [{"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(jpeg_bytes).decode()}},
+                                    {"text": prompt}]}],
+            "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}
+    last = ""
+    for attempt in range(6):  # busy or slow models: try the next one, then come back
+        model = models[attempt % len(models)]
+        try:
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                              headers={"x-goog-api-key": key, "Content-Type": "application/json"}, json=body, timeout=30)
+            if r.status_code in (404, 429, 500, 502, 503, 504):
+                last = f"{model} {r.status_code}"
+                if r.status_code != 404:
+                    import time
+                    time.sleep(2 + 2 * attempt)
+                continue
+            r.raise_for_status()
+            text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+            j = json.loads(re.search(r"\{.*\}", text, re.S).group(0))
+            bad = [k for k, want in (("subject", True), ("era", True), ("overlay", False)) if bool(j.get(k)) != want]
+            return (not bad), ("" if not bad else ("/".join(bad) + ": ")) + str(j.get("reason", ""))
+        except Exception as e:
+            last = f"{model} {str(e)[:80]}"
+    log(f"      vision check unavailable ({last})")
+    return True, "UNCHECKED"
 
 
 def to_jpeg(png_or_jpeg, width=768):
@@ -531,6 +541,16 @@ class Checker:
 # ---------------------------------------------------------------- clips
 
 def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
+    for wide_only in (True, False):
+        if _hunt_clip(shot, sid, line, film_dir, used, args, chk, star, wide_only):
+            return True
+        if shot.get("url"):
+            break
+        log("    no wide footage found, now allowing vertical video")
+    return False
+
+
+def _hunt_clip(shot, sid, line, film_dir, used, args, chk, star, wide_only):
     need_face = shot.get("star", True)
     if shot.get("url"):
         cands = [{"url": shot["url"], "title": "", "who": ""}]
@@ -574,6 +594,9 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
         if min(w, h) < 240 or length < MIN_CLIP:
             log(f"      skip: {w}x{h}, {length:.1f}s")
             continue
+        if wide_only and w < h * 1.2:
+            log(f"      skip for now: vertical {w}x{h}")
+            continue
         picked = None
         for (s0, sd) in segments(path, length)[:8]:
             take = min(sd, MAX_CLIP)
@@ -601,11 +624,11 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
             if not ok:
                 log(f"      shot at {start:.1f}s: rejected by vision ({why})")
                 continue
-            picked = (start, take, float(score))
+            picked = (start, take, float(score), why == "UNCHECKED")
             break
         if not picked:
             continue
-        start, take, score = picked
+        start, take, score, unchecked = picked
         out = film_dir / "assets" / f"{sid}.mp4"
         out.parent.mkdir(exist_ok=True)
         cut(path, start, take, out, w, h, fo not in ("progressive", "unknown"))
@@ -614,7 +637,8 @@ def hunt_clip(shot, sid, line, film_dir, used, args, chk, star):
         used.update([c["url"], page])
         t_src = (a or 0) + start
         shot.update({"src": f"assets/{sid}.mp4", "credit": site_name(info, c.get("who", "")), "source": page, "src_t": round(t_src, 1),
-                     "w": w2, "h": h2, "dur": round(min(d2, MAX_CLIP), 2), **({"face": round(float(score), 2)} if need_face and chk.faces else {})})
+                     "w": w2, "h": h2, "dur": round(min(d2, MAX_CLIP), 2), **({"face": round(float(score), 2)} if need_face and chk.faces else {}),
+                     **({"unchecked": True} if unchecked else {})})
         log(f"      got {take:.1f}s at {t_src:.1f}s of the source, {w}x{h} -> {w2}x{h2}  ({shot['credit']})")
         return True
     return False
@@ -875,11 +899,13 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
                     continue
                 if box:
                     focus = {"x": round(float((box[0] + box[2] / 2) / w), 3), "y": round(float((box[1] + box[3] / 2) / h), 3)}
+        unchecked = False
         if kind != "print":
             ok, why = vision(to_jpeg(buf.getvalue()), shot, line, star, ERA)
             if not ok:
                 log(f"    skip image: vision ({why})")
                 continue
+            unchecked = why == "UNCHECKED"
         img.thumbnail((2800, 2800), Image.LANCZOS)
         out = film_dir / "assets" / f"{sid}.jpg"
         out.parent.mkdir(exist_ok=True)
@@ -888,6 +914,8 @@ def hunt_image(shot, sid, line, film_dir, used, args, chk, star, tm, pid):
         shot.update({"src": f"assets/{sid}.jpg", "credit": c["credit"], "source": c["page"], "w": img.size[0], "h": img.size[1]})
         if highlight:
             shot["highlight"] = highlight
+        if unchecked:
+            shot["unchecked"] = True
         if focus:
             shot["focus"] = focus
         if score is not None and chk.faces:
@@ -940,7 +968,7 @@ def main():
         if sid in redo and s.get("src"):
             if s.get("source"):
                 rejected.append(s["source"])
-            for k in ("src", "audio", "credit", "source", "w", "h", "dur", "focus", "face", "highlight", "src_t"):
+            for k in ("src", "audio", "credit", "source", "w", "h", "dur", "focus", "face", "highlight", "src_t", "unchecked"):
                 s.pop(k, None)
     used = {s.get("source") for _, s, _ in jobs if s.get("source") and s["kind"] != "soundbite"} | set(rejected)
 

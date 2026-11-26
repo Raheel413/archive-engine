@@ -43,6 +43,7 @@ film.beats.forEach((b, bi) => {
     if (!fs.existsSync(path.join(dir, s.src))) errors.push(`${sid}: file missing ${s.src}`);
     if ((s.kind === 'clip' || s.kind === 'soundbite') && (s.dur ?? 0) > MAX_CLIP + 0.05) errors.push(`${sid}: ${s.dur}s is over the ${MAX_CLIP}s limit`);
     if (!s.credit) errors.push(`${sid}: no credit`);
+    if (s.unchecked) warns.push(`${sid}: the vision check was unavailable when this was found, look at it (redo with --redo ${sid})`);
     if (!s.source && s.kind !== 'page') warns.push(`${sid}: no source link for the credits`);
     if (s.kind === 'soundbite' && !s.audio) errors.push(`${sid}: soundbite has no audio file`);
     if (s.source && s.kind !== 'soundbite') {

@@ -20,14 +20,7 @@
         {
           "kind": "clip",
           "q": "Universal Studios 1950s newsreel",
-          "star": false,
-          "src": "assets/b00-0.mp4",
-          "credit": "skipe@mindspring.com / ArchiveOrg",
-          "source": "https://archive.org/details/1958-03-13_Dead_A-Bomb_Hits_US_Town",
-          "src_t": 69.6,
-          "w": 1440,
-          "h": 1080,
-          "dur": 4.97
+          "star": false
         },
         {
           "kind": "photo",
@@ -99,15 +92,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "young Clint Eastwood 1956 film scene",
-          "src": "assets/b02-0.mp4",
-          "credit": "B. C. LONDON / Facebook",
-          "source": "https://www.facebook.com/61584801449111/videos/1956-a-young-clint-eastwood-makes-an-appearance-on-highway-patrol-just-another-f/1436855224761913/",
-          "src_t": 3.9,
-          "w": 608,
-          "h": 1080,
-          "dur": 5,
-          "face": 0.49
+          "q": "young Clint Eastwood 1956 film scene"
         }
       ],
       "vo": "vo/b02.flac",
@@ -189,15 +174,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "Clint Eastwood 1960s TV interview black and white",
-          "src": "assets/b05-0.mp4",
-          "credit": "Evren Solivay / Facebook",
-          "source": "https://www.facebook.com/61590208481310/videos/clint-eastwood-spoke-up-for-his-black-partner-in-1957-it-cost-his-friend-everyth/1607632110683994/",
-          "src_t": 1398.1,
-          "w": 1920,
-          "h": 1080,
-          "dur": 4.97,
-          "face": 0.7
+          "q": "Clint Eastwood 1960s TV interview black and white"
         }
       ],
       "vo": "vo/b05.flac",
@@ -234,17 +211,7 @@
         {
           "kind": "photo",
           "q": "Clint Eastwood Rawhide 1960 publicity still Rowdy Yates",
-          "at": 9,
-          "src": "assets/b07-1.jpg",
-          "credit": "Collider",
-          "source": "https://collider.com/clint-eastwood-rawhide-western-never-directed-episode/",
-          "w": 1200,
-          "h": 675,
-          "focus": {
-            "x": 0.504,
-            "y": 0.374
-          },
-          "face": 0.57
+          "at": 9
         }
       ],
       "year": 1959,
@@ -276,25 +243,13 @@
         {
           "kind": "photo",
           "q": "Sergio Leone 1964 director",
-          "star": false,
-          "src": "assets/b08-0.jpg",
-          "credit": "Wikipedia",
-          "source": "https://en.wikipedia.org/wiki/Sergio_Leone",
-          "w": 802,
-          "h": 1154
+          "star": false
         },
         {
           "kind": "clip",
           "q": "Almeria desert spaghetti western 1960s landscape",
           "star": false,
-          "at": 11,
-          "src": "assets/b08-1.mp4",
-          "credit": "Explore Spain Now / Facebook",
-          "source": "https://www.facebook.com/61584824076298/videos/almer%C3%ADa-in-andalusia-l-tabernas-desert-a-place-where-rugged-hills-endless-horizo/1412842423671978/",
-          "src_t": 29.4,
-          "w": 608,
-          "h": 1080,
-          "dur": 3
+          "at": 11
         }
       ],
       "lower": {
@@ -425,15 +380,7 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho",
-          "src": "assets/b12-0.mp4",
-          "credit": "A Fistful of Dollars / Dailymotion",
-          "source": "https://www.dailymotion.com/video/x4b6vwd",
-          "src_t": 84.7,
-          "w": 2544,
-          "h": 1080,
-          "dur": 4.97,
-          "face": 0.56
+          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
         }
       ],
       "vo": "vo/b12.flac",
@@ -584,14 +531,7 @@
         {
           "kind": "clip",
           "q": "Burt Reynolds talk show interview 1970s",
-          "star": false,
-          "src": "assets/b16-0.mp4",
-          "credit": "INA / Dailymotion",
-          "source": "https://www.dailymotion.com/video/xfd6sz",
-          "src_t": 49.1,
-          "w": 1440,
-          "h": 1080,
-          "dur": 4.97
+          "star": false
         }
       ],
       "vo": "vo/b16.flac",
@@ -648,6 +588,8 @@
     "https://www.reddit.com/r/Moviesinthemaking/comments/y538ac/sergio_leone_directing_a_fistful_of_dollars_1964/",
     "https://archive.org/details/the-good-the-bad-and-the-ugly_202602",
     "https://www.dailymotion.com/video/x35zfvr",
-    "https://www.dailymotion.com/video/xmffwk"
+    "https://www.dailymotion.com/video/xmffwk",
+    "https://www.facebook.com/61584801449111/videos/1956-a-young-clint-eastwood-makes-an-appearance-on-highway-patrol-just-another-f/1436855224761913/",
+    "https://www.facebook.com/61584824076298/videos/almer%C3%ADa-in-andalusia-l-tabernas-desert-a-place-where-rugged-hills-endless-horizo/1412842423671978/"
   ]
 }
