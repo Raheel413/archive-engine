@@ -1,0 +1,257 @@
+{
+  "title": "Fired For His Adam's Apple",
+  "star": {
+    "name": "Clint Eastwood",
+    "era": [
+      1955,
+      1970
+    ]
+  },
+  "look": {
+    "grain": 0.06,
+    "vignette": 0.45
+  },
+  "beats": [
+    {
+      "seg": "hook",
+      "text": "In the 1950s, Universal Pictures fired a young contract actor.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "Universal Studios backlot 1950s",
+          "star": false
+        },
+        {
+          "kind": "photo",
+          "q": "young Clint Eastwood 1955 Universal contract player",
+          "at": 4
+        }
+      ],
+      "year": "1950s"
+    },
+    {
+      "seg": "hook",
+      "text": "Burt Reynolds, who was let go at the same time, remembered the reasons.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Burt Reynolds 1959 portrait",
+          "star": false
+        }
+      ],
+      "lower": {
+        "name": "Burt Reynolds",
+        "role": "Fired by Universal the same year"
+      }
+    },
+    {
+      "seg": "hook",
+      "text": "He talked too slow.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "young Clint Eastwood 1950s screen test"
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "He had a chipped tooth he wouldn't fix.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Clint Eastwood 1950s close up portrait"
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "And his Adam's apple stuck out too far.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Clint Eastwood young profile portrait 1950s"
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "That actor was Clint Eastwood.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "Clint Eastwood 1960s interview"
+        }
+      ]
+    },
+    {
+      "seg": "chapter",
+      "title": "Fifteen Thousand Dollars",
+      "year": "1964"
+    },
+    {
+      "seg": "line",
+      "text": "A few years later, he was playing the second lead on a TV Western called Rawhide.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "Clint Eastwood Rawhide Rowdy Yates 1959"
+        },
+        {
+          "kind": "photo",
+          "q": "Clint Eastwood Rawhide publicity photo",
+          "at": 9
+        }
+      ],
+      "year": 1959
+    },
+    {
+      "seg": "line",
+      "text": "Then a little-known Italian director named Sergio Leone offered him a Western, shot in Spain.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Sergio Leone 1964 director",
+          "star": false
+        },
+        {
+          "kind": "clip",
+          "q": "Tabernas desert Almeria western film set",
+          "star": false,
+          "at": 11
+        }
+      ],
+      "lower": {
+        "name": "Sergio Leone",
+        "role": "Director"
+      }
+    },
+    {
+      "seg": "line",
+      "text": "Henry Fonda, Charles Bronson and James Coburn had already said no.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Henry Fonda 1960s portrait",
+          "star": false
+        },
+        {
+          "kind": "photo",
+          "q": "Charles Bronson 1960s portrait",
+          "star": false,
+          "at": 3
+        },
+        {
+          "kind": "photo",
+          "q": "James Coburn 1960s portrait",
+          "star": false,
+          "at": 6
+        }
+      ]
+    },
+    {
+      "seg": "line",
+      "text": "The pay was fifteen thousand dollars.",
+      "shots": [
+        {
+          "kind": "page",
+          "url": "https://en.wikipedia.org/wiki/A_Fistful_of_Dollars",
+          "find": "Eastwood was paid $15,000 for his role"
+        }
+      ]
+    },
+    {
+      "seg": "soundbite",
+      "who": "Clint Eastwood",
+      "shots": [
+        {
+          "kind": "soundbite",
+          "find": "I was doing Rawhide, and I was coming to a hiatus",
+          "q": "Clint Eastwood interview Sergio Leone Rawhide hiatus"
+        }
+      ]
+    },
+    {
+      "seg": "line",
+      "text": "He took it anyway.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "A Fistful of Dollars 1964 Clint Eastwood poncho"
+        }
+      ]
+    },
+    {
+      "seg": "line",
+      "text": "The film was A Fistful of Dollars.",
+      "shots": [
+        {
+          "kind": "poster",
+          "film": "A Fistful of Dollars",
+          "year": 1964,
+          "q": "A Fistful of Dollars 1964 poster",
+          "star": false,
+          "from": [
+            "tmdb",
+            "images"
+          ]
+        }
+      ],
+      "year": 1964
+    },
+    {
+      "seg": "line",
+      "text": "It cost about two hundred thousand dollars to make, and it turned a TV cowboy into the most famous face in Westerns.",
+      "shots": [
+        {
+          "kind": "photo",
+          "film": "A Fistful of Dollars",
+          "year": 1964,
+          "q": "A Fistful of Dollars 1964 still Clint Eastwood",
+          "from": [
+            "tmdb",
+            "images"
+          ]
+        },
+        {
+          "kind": "clip",
+          "q": "A Fistful of Dollars Clint Eastwood close up",
+          "at": 10
+        }
+      ]
+    },
+    {
+      "seg": "line",
+      "text": "Burt Reynolds told him he was the one in real trouble that day.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Clint Eastwood Burt Reynolds together",
+          "star": false
+        }
+      ]
+    },
+    {
+      "seg": "line",
+      "text": "A man can learn to act.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "Burt Reynolds talk show interview 1970s",
+          "star": false
+        }
+      ]
+    },
+    {
+      "seg": "outro",
+      "text": "Nobody gets rid of an Adam's apple.",
+      "shots": [
+        {
+          "kind": "photo",
+          "q": "Clint Eastwood 1960s portrait black and white"
+        }
+      ]
+    }
+  ],
+  "voice": "aura-2-zeus-en"
+}

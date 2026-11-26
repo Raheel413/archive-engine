@@ -55,6 +55,7 @@ export type Film = {
   title: string;
   fps?: number;
   star: {name: string; tmdb?: number; born?: number; era?: [number, number]; aka?: string[]};
+  voice?: string;          // a Deepgram voice (aura-2-zeus-en ...) when there is no recording of your own
   look?: {grain?: number; vignette?: number};
   beats: Beat[];
 };

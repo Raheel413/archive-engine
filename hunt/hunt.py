@@ -275,7 +275,7 @@ def image_candidates(shot, star, tm, pid):
         if s == "tmdb" and tm.ok:
             if shot.get("film"):
                 lists.append(tm.movie_images(shot["film"], shot.get("year"), "posters" if shot["kind"] == "poster" else "backdrops"))
-            elif shot["kind"] == "photo" and pid:
+            elif shot["kind"] == "photo" and pid and shot.get("star", True):  # tagged stills are of the star only
                 tagged = tm.tagged(pid)
                 if year:  # stills closest to the year first
                     tagged.sort(key=lambda c: abs((c.get("year") or 3000) - int(year)))

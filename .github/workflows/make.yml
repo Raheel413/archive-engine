@@ -46,7 +46,7 @@ jobs:
       film: ${{ steps.pick.outputs.film }}
       sha: ${{ steps.save.outputs.sha }}
       chunks: ${{ steps.chunks.outputs.chunks }}
-      scale: ${{ steps.pick.outputs.scale }}
+      scale: ${{ steps.check.outputs.scale }}
       go: ${{ steps.check.outputs.go }}
     steps:
       - uses: actions/checkout@v4
@@ -103,11 +103,12 @@ jobs:
         continue-on-error: true
         run: node scripts/receipts.mjs "films/${{ steps.pick.outputs.film }}"
 
-      - name: Cut your voiceover into beats (Deepgram)
+      - name: Voiceover (your recording, or a Deepgram voice when film.json has "voice") cut into beats
         env:
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
         run: |
           f="films/${{ steps.pick.outputs.film }}"
+          [ -n "$DEEPGRAM_API_KEY" ] && node scripts/vo_tts.mjs "$f"
           if ! ls "$f"/vo/voice.* >/dev/null 2>&1; then echo "::warning::No vo/voice.* yet: rendering on estimated timing, no narration"; exit 0; fi
           if [ -z "$DEEPGRAM_API_KEY" ]; then echo "::error::Add the DEEPGRAM_API_KEY secret to cut the voiceover"; exit 1; fi
           node scripts/align.mjs "$f"
@@ -121,6 +122,7 @@ jobs:
           git config user.name "archive-engine bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$f/film.json" "$f/credits.md"
+          ls "$f"/vo/voice.* >/dev/null 2>&1 && git add "$f"/vo/voice.*
           if ! git diff --cached --quiet; then
             git commit -q -m "make: footage and voice for ${{ steps.pick.outputs.film }} [skip ci]"
             for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
@@ -131,8 +133,14 @@ jobs:
         id: check
         run: |
           film="films/${{ steps.pick.outputs.film }}"
-          extra=""; [ "${{ steps.pick.outputs.scale }}" = "0.5" ] && extra="--allow-missing"
-          if node scripts/validate.mjs "$film" $extra > validate.txt; then echo "go=yes" >> "$GITHUB_OUTPUT"; else echo "go=no" >> "$GITHUB_OUTPUT"; fi
+          scale="${{ steps.pick.outputs.scale }}"
+          extra=""; [ "$scale" = "0.5" ] && extra="--allow-missing"
+          if node scripts/validate.mjs "$film" $extra > validate.txt; then echo "go=yes" >> "$GITHUB_OUTPUT"
+          elif node scripts/validate.mjs "$film" --allow-missing > validate.txt; then
+            # footage still missing: render a 540p draft anyway (missing shots show as red cards)
+            echo "go=yes" >> "$GITHUB_OUTPUT"; scale=0.5; echo "DRAFT: footage missing, rendering a 540p draft" >> validate.txt
+          else echo "go=no" >> "$GITHUB_OUTPUT"; fi
+          echo "scale=$scale" >> "$GITHUB_OUTPUT"
           cat validate.txt
           {
             echo "## ${{ steps.pick.outputs.film }}"

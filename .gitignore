@@ -17,3 +17,4 @@ films/*/vo/*.words.json
 films/*/.up-*/
 films/*/.down-*/
 films/_*/
+films/*/vo/.tts-*/
