@@ -1,0 +1,32 @@
+{
+  "name": "archive-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Script + your voiceover -> classic-Hollywood archive documentary: archive footage hunt with face check, 5-second cap, credits, cloud render on GitHub.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "start": "node scripts/start.mjs",
+    "align": "node scripts/align.mjs",
+    "receipts": "node scripts/receipts.mjs",
+    "validate": "node scripts/validate.mjs",
+    "render": "node scripts/render.mjs",
+    "mix": "node scripts/mix.mjs",
+    "credits": "node scripts/credits.mjs",
+    "sheet": "node scripts/contact_sheet.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "@remotion/bundler": "^4.0.543",
+    "@remotion/cli": "^4.0.543",
+    "@remotion/renderer": "^4.0.543",
+    "@types/react": "^19.3.3",
+    "playwright-core": "^1.65.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.543",
+    "typescript": "^7.0.2"
+  }
+}

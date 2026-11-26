@@ -1,0 +1,19 @@
+node_modules/
+out/
+.venv/
+__pycache__/
+*.log
+.env
+cookies*.txt
+public/films/
+.hunt-cache/
+.models/
+sounds/
+# footage and voice pieces live in the film's GitHub Release (scripts/assets.mjs), not in git
+films/*/assets/
+films/*/vo/b*.flac
+films/*/vo/b*.wav
+films/*/vo/*.words.json
+films/*/.up-*/
+films/*/.down-*/
+films/_*/
