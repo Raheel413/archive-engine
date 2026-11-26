@@ -474,8 +474,9 @@ def vision(jpeg_bytes, shot, line, star, era):
     else:
         who = (f"it is NOT a shot of {star}: judge the subject only by the search words (another person, a place or an object); "
                f"{star} being absent is correct")
+    topic = f"a documentary about {star}" if shot.get("star", shot["kind"] in ("clip", "photo", "soundbite")) else "a documentary"
     prompt = (
-        f"You check footage for a documentary about {star}.\n"
+        f"You check footage for {topic}.\n"
         f"This frame is a candidate for the search: \"{shot.get('q') or shot.get('film') or ''}\" ({shot['kind']}).\n"
         f"Narration over it: \"{line}\"\nIt should be from {when}; {who}.\n"
         "Reply with JSON only: {\"subject\": true|false, \"era\": true|false, \"overlay\": true|false, \"reason\": \"under 12 words\"}\n"
