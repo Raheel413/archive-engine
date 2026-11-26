@@ -68,7 +68,12 @@
         {
           "kind": "photo",
           "q": "young Burt Reynolds 1958 portrait",
-          "star": false
+          "star": false,
+          "src": "assets/b01-0.jpg",
+          "credit": "Julien's Auctions",
+          "source": "https://www.juliensauctions.com/en/auctions/property-from-the-estate-of-burt-reynolds-305",
+          "w": 644,
+          "h": 800
         }
       ],
       "lower": {
@@ -405,7 +410,7 @@
         }
       ],
       "vo": "vo/b10.flac",
-      "vo_dur": 2.43,
+      "vo_dur": 3.12,
       "words": [
         0.08,
         0.32,
@@ -432,7 +437,7 @@
           "face": 0.37
         }
       ],
-      "vo": "vo/b12.flac",
+      "vo": "vo/b11.flac",
       "vo_dur": 1.76,
       "words": [
         0.08,
@@ -463,7 +468,7 @@
         }
       ],
       "year": 1964,
-      "vo": "vo/b13.flac",
+      "vo": "vo/b12.flac",
       "vo_dur": 2.385,
       "words": [
         0.08,
@@ -513,7 +518,7 @@
           "face": 0.45
         }
       ],
-      "vo": "vo/b14.flac",
+      "vo": "vo/b13.flac",
       "vo_dur": 7.34,
       "words": [
         0.08,
@@ -555,7 +560,7 @@
           "h": 1748
         }
       ],
-      "vo": "vo/b15.flac",
+      "vo": "vo/b14.flac",
       "vo_dur": 3.52,
       "words": [
         0.08,
@@ -583,7 +588,7 @@
           "star": false
         }
       ],
-      "vo": "vo/b16.flac",
+      "vo": "vo/b15.flac",
       "vo_dur": 2.24,
       "words": [
         0.08,
@@ -613,7 +618,7 @@
           "face": 0.55
         }
       ],
-      "vo": "vo/b17.flac",
+      "vo": "vo/b16.flac",
       "vo_dur": 2.27,
       "words": [
         0.08,
