@@ -8,6 +8,7 @@
 | b02-0 | clip | Just a Young Fool ! / Dailymotion | https://www.dailymotion.com/video/xy0za | 31.4 |
 | b03-0 | photo | ArtPhotoLimited | https://www.artphotolimited.com/us-en/fine-art-photography/movie/actor/american-actors/clint-eastwood/photo/bridgeman-images/clint-eastwood-1955 |  |
 | b04-0 | photo | Wikipedia | https://en.wikipedia.org/wiki/Early_life_and_work_of_Clint_Eastwood |  |
+| b05-0 | clip | Old Hollywood / Facebook | https://www.facebook.com/shoemsar/videos/clint-eastwood-interviewed-in-1967-clinteastwood-1967/842431041794861/ | 98.7 |
 | b07-0 | clip | Gicajordi2 / Dailymotion | https://www.dailymotion.com/video/x2vebld | 87.7 |
 | b07-1 | photo | Collider | https://collider.com/clint-eastwood-rawhide-western-never-directed-episode/ |  |
 | b08-0 | photo | Wikipedia | https://en.wikipedia.org/wiki/Sergio_Leone |  |
@@ -21,4 +22,5 @@
 | b14-0 | photo | IMDb | https://www.imdb.com/title/tt0058461/ |  |
 | b14-1 | clip | A Fistful of Dollars / Dailymotion | https://www.dailymotion.com/video/x45177n | 21.2 |
 | b15-0 | photo | Holden Luntz Gallery | https://www.holdenluntz.com/artists/harry-benson/burt-reynolds-clint-eastwood/ |  |
+| b16-0 | clip | INA / Dailymotion | https://www.dailymotion.com/video/xfd6sz | 51.3 |
 | b17-0 | photo | Photos.com by Getty Images | https://photos.com/featured/clint-eastwood-hulton-archive.html?srsltid=AYCX9vIyq-USf4gjG7-g2uZKpeoc-0-7HaINmN8LL-RIH7O5ZIrQExs2 |  |

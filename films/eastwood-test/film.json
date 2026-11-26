@@ -201,7 +201,15 @@
             "vimeo",
             "okru",
             "web"
-          ]
+          ],
+          "src": "assets/b05-0.mp4",
+          "credit": "Old Hollywood / Facebook",
+          "source": "https://www.facebook.com/shoemsar/videos/clint-eastwood-interviewed-in-1967-clinteastwood-1967/842431041794861/",
+          "src_t": 98.7,
+          "w": 1440,
+          "h": 1080,
+          "dur": 4.97,
+          "face": 0.52
         }
       ],
       "vo": "vo/b05.flac",
@@ -539,7 +547,7 @@
         3.42,
         3.58,
         3.9,
-        4.38,
+        4.46,
         4.78,
         4.94,
         5.18,
@@ -588,7 +596,15 @@
         {
           "kind": "clip",
           "q": "Burt Reynolds interview 1970s",
-          "star": false
+          "star": false,
+          "src": "assets/b16-0.mp4",
+          "credit": "INA / Dailymotion",
+          "source": "https://www.dailymotion.com/video/xfd6sz",
+          "src_t": 51.3,
+          "w": 1440,
+          "h": 1080,
+          "dur": 4.97,
+          "unchecked": true
         }
       ],
       "vo": "vo/b16.flac",
