@@ -3,32 +3,34 @@
 You make 15-20 minute archive documentaries about 1960s-90s film stars. Claude Code does the work;
 GitHub renders the video. You never edit video by hand.
 
-## Option A: work inside Raheel's repo (easiest)
+## Setup: clone it into your own GitHub repo
 
-Raheel adds you as a collaborator (GitHub repo -> Settings -> Collaborators -> Add people).
-The API keys are already stored as secrets in his repo, so **you need no API keys at all** for
-cloud rendering. You need:
+Cloning copies the code to your computer. To have GitHub render videos for you, the code must live in
+**your own** GitHub repo, with **your own** API keys stored there as secrets.
 
-1. A GitHub account (accept the collaborator invite in your email).
-2. Claude Code with a Claude Pro or Max plan: https://claude.com/claude-code
-3. Git and the GitHub CLI. On Windows:
-   ```
-   winget install Git.Git GitHub.cli OpenJS.NodeJS.LTS
-   ```
-   then close and reopen PowerShell and run `gh auth login` (GitHub.com, HTTPS, Yes, browser).
-4. The repo:
-   ```
-   cd D:\projects
-   git clone https://github.com/Raheel413/archive-engine
-   cd archive-engine
-   npm ci
-   claude
-   ```
+### 1. Install the tools (Windows, PowerShell)
+```
+winget install Git.Git GitHub.cli OpenJS.NodeJS.LTS
+```
+Close and reopen PowerShell, then `gh auth login` (GitHub.com, HTTPS, Yes, Login with a web browser).
+Install Claude Code too (Claude Pro or Max plan): https://claude.com/claude-code
 
-## Option B: your own copy (fork)
+### 2. Clone and make it your repo
+```
+mkdir D:\projects -Force
+cd D:\projects
+git clone https://github.com/Raheel413/archive-engine
+cd archive-engine
+npm ci
+git remote remove origin
+gh repo create archive-engine --public --source . --push
+```
+This creates `github.com/<you>/archive-engine` with all the code. Keep it **public**: public repos get
+unlimited free GitHub render minutes. (Private works too but uses your 2,000-3,000 free minutes a month.)
 
-Fork the repo on GitHub, then add these secrets in **your fork** (Settings -> Secrets and variables ->
-Actions -> New repository secret). Paste each value with **no space before it**.
+### 3. Add your API keys as secrets
+On GitHub: your repo -> Settings -> Secrets and variables -> Actions -> New repository secret.
+Paste each value with **no space before it**.
 
 | Secret | Needed? | What it does | Where to get it |
 |---|---|---|---|
@@ -39,7 +41,16 @@ Actions -> New repository secret). Paste each value with **no space before it**.
 | `YOUTUBE_API_KEY` | yes | YouTube search | console.cloud.google.com -> enable "YouTube Data API v3" -> Credentials -> API key (free quota) |
 | `HUNT_PROXY` | optional | lets GitHub download from YouTube (talk-show soundbites) | a residential proxy network (Bright Data, Oxylabs, Decodo, IPRoyal, Webshare): the `http://user:pass@host:port` line from their dashboard. Not a desktop app. |
 
-Also in your fork: Actions tab -> enable workflows.
+### 4. Allow GitHub to save footage
+Your repo -> Settings -> Actions -> General -> Workflow permissions -> **Read and write permissions** -> Save.
+Then open the **Actions** tab once and click the green button to enable workflows if GitHub asks.
+
+### 5. Start Claude Code
+```
+cd D:\projects\archive-engine
+claude
+```
+and paste the prompt Raheel gave you.
 
 ## Optional: hunting YouTube from your own computer (no proxy)
 
