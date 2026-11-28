@@ -14,6 +14,8 @@ What it does by itself:
 - **Credits**: on screen bottom-left, `credits.md` per shot, and a ready-to-paste YouTube description block.
 - **Look**: serif chapter cards with the year, year stamps, lower thirds, quote cards, one even grain and vignette over everything so 1962 and 1994 footage feel like one film.
 
+New teammate? Read `TEAMMATE.md`.
+
 ## One-time setup
 
 ### 1. GitHub secrets (Settings → Secrets and variables → Actions)

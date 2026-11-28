@@ -101,11 +101,19 @@ runs over 5 s the hunter keeps the first 5 s and subtitles only what is said in 
 }
 ```
 
-## 7. Make it
+## 7. Make it (everything runs on GitHub)
 
-1. `node scripts/validate.mjs films/<name> --allow-missing` and fix every error.
-2. Raheel puts his voiceover at `films/<name>/vo/voice.mp3` (mp3 or m4a, under 100 MB) and pushes.
-3. GitHub hunts what it can reach, cuts his VO into beats, and renders if everything is found.
-4. Missing footage (YouTube): Raheel runs `.\hunt\run.ps1 <name>` on his laptop. It uploads and the render restarts.
-5. Bad pick: `.\hunt\run.ps1 <name> -Redo b05-0,b07-1`. Shot ids are `b<beat>-<shot>`, listed in credits.md.
-6. Artifacts: the MP4, a contact sheet, credits.md and `<name>.description.txt` (credits block for YouTube).
+1. Voice: either the person records the script and saves `films/<name>/vo/voice.mp3` (mp3/m4a, under
+   100 MB), or set `"voice": "aura-2-zeus-en"` in film.json and Deepgram reads it (other American male
+   voices: aura-2-orion-en, aura-2-arcas-en, aura-2-apollo-en).
+2. `node scripts/validate.mjs films/<name> --allow-missing`, fix every error, commit, push.
+3. GitHub (Actions -> Make video) hunts footage, runs the face check and the vision check (right
+   person, right decade, no logos/subtitles/watermarks), cuts the voice into beats, renders on parallel
+   machines, mixes, and uploads the MP4 + contact sheet + credits as the run's artifact.
+   If any shot is still missing it renders a 540p draft with red cards; when all are found, 1080p.
+4. Watch it: `gh run watch` (or the Actions tab). Read the hunt log for NOT FOUND shots.
+5. Review the contact sheet. Bad shot: `node scripts/redo.mjs films/<name> b05-0,b07-1 "better query"`,
+   commit, push: GitHub re-hunts only those. Shot ids are `b<beat>-<shot>` (listed in credits.md).
+6. YouTube is blocked from GitHub. YouTube-only shots (mostly soundbites) need either the `HUNT_PROXY`
+   secret (a residential proxy URL) or the laptop hunt: `.\hunt\run.ps1 <name>`.
+7. Artifacts: MP4, contact sheet, credits.md and `<name>.description.txt` (credits block for YouTube).
